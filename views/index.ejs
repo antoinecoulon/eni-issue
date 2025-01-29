@@ -6,32 +6,36 @@
     <title>ENIssues</title>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 </head>
-<body class="bg-gray-100 min-h-screen">
+<body class="bg-gray-100 min-h-screen w-screen max-w-screen">
     <header class="bg-gray-900 rounded-lg shadow-sm m-4 dark:bg-gray-800">
         <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl dark:text-white text-center">ENIssues</h1>
     </header>
 
-    <section class="text-gray-600 body-font overflow-hidden text-center">
+    <section class="text-gray-600 body-font overflow-hidden text-center max-w-full">
 
         <a href="/error">
-        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-            GENERATE ERREUR
-        </button>
-    </a>
+            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                GENERATE ERREUR
+            </button>
+        </a>
+    
+        <div class="flex justify-center">
+            <dotlottie-player
+            src="https://lottie.host/d755d9e6-4fd4-4b46-ac0a-a0a5d89780f1/22d0ASt2eZ.lottie"
+            background="transparent"
+            speed="1"
+            style="width: 300px; height: 300px"
+            loop
+            autoplay
+            ></dotlottie-player>
+        </div>
+    
         <h2 class="text-2xl font-medium text-gray-900 title-font mb-2 text-center">
             Ajouter une nouvelle issue:
         </h2>
-
-        <div class="container px-5 py-24 mx-auto flex justify-center items-center">
-            <form action="/add-issue" method="post" class="flex justify-center items-center">
-                <dotlottie-player
-                    src="https://lottie.host/d755d9e6-4fd4-4b46-ac0a-a0a5d89780f1/22d0ASt2eZ.lottie"
-                    background="transparent"
-                    speed="1"
-                    style="width: 300px; height: 300px"
-                    loop
-                    autoplay
-                ></dotlottie-player>
+        
+        <div class="container px-5 py-6 mx-auto flex justify-center items-center">
+            <form action="/add-issue" method="post" class="flex justify-center items-center flex-wrap flex-col md:flex-row">
                 
                 <div class="m-3">
                     <label for="titre">Titre:</label>

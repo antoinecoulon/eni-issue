@@ -23,17 +23,6 @@ app.get("/", (req, res) => {
   res.render("index", { issues });
 });
 
-// Test pour express validator
-app.get("/test", query('person').notEmpty().escape(), (req, res) => {
-    const result = validationResult(req);
-    if (result.isEmpty()) {
-        const data = matchedData(req);
-        res.send(`Hello, ${data.person}!`);
-    }
-    
-    res.send({ errors: result.array() });
-});
-
 // Route pour la page d'ajout d'une issue
 app.post("/add-issue", (req, res) => {
     let id = issues.length + 1;

@@ -30,9 +30,6 @@ app.use(express.urlencoded({ extended: true }));
 // Middleware pour parser le body des requêtes en JSON
 app.use(express.json());
 
-// Initialisation de la liste des issues
-//let issues = [];
-
 // Routes
 // Route pour la page d'accueil
 app.get("/", (req, res) => {
@@ -53,17 +50,6 @@ app.post("/add-issue", (req, res) => {
     });
     
     res.redirect("/");
-});
-
-// Route pour la suppression d'une issue
-app.get("/delete-issue/:uuid", (req, res) => {
-    db.collection('issues').deleteOne({uuid: req.params.uuid}).then((response) => {
-        if (response.deletedCount === 1) {
-            res.redirect("/");
-        } else {
-            res.status(404).send('Error: no issue found');
-        }
-    })
 });
 
 // Route pour la page d'édition d'une issue
@@ -90,6 +76,17 @@ app.post("/edit-issue/:uuid", (req, res) => {
     })
     
     res.redirect("/");
+});
+
+// Route pour la suppression d'une issue
+app.get("/delete-issue/:uuid", (req, res) => {
+    db.collection('issues').deleteOne({uuid: req.params.uuid}).then((response) => {
+        if (response.deletedCount === 1) {
+            res.redirect("/");
+        } else {
+            res.status(404).send('Error: no issue found');
+        }
+    })
 });
 
 // Simulation d'une erreur

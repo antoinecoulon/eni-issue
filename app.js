@@ -1,4 +1,5 @@
 const express = require('express');
+const { query, matchedData, validationResult } = require('express-validator');
 
 const app = express();
 const port = 3000;
@@ -10,6 +11,9 @@ app.set("view engine", "ejs");
 // Middleware pour parser le body des requêtes
 app.use(express.urlencoded({ extended: true }));
 
+// Middleware pour parser le body des requêtes en JSON
+app.use(express.json());
+
 // Initialisation de la liste des issues
 let issues = [];
 
@@ -17,6 +21,17 @@ let issues = [];
 // Route pour la page d'accueil
 app.get("/", (req, res) => {
   res.render("index", { issues });
+});
+
+// Test pour express validator
+app.get("/test", query('person').notEmpty().escape(), (req, res) => {
+    const result = validationResult(req);
+    if (result.isEmpty()) {
+        const data = matchedData(req);
+        res.send(`Hello, ${data.person}!`);
+    }
+    
+    res.send({ errors: result.array() });
 });
 
 // Route pour la page d'ajout d'une issue

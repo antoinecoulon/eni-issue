@@ -15,7 +15,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Initialisation de la liste des issues
-let issues = [];
+let issues = [
+    {
+        id: 1,
+        titre: 'issue1',
+        description: 'description test',
+        auteur: 'Antoine',
+        date: '2025-01-29',
+        etat: 'resolu'
+    }
+];
 
 // Routes
 // Route pour la page d'accueil

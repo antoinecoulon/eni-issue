@@ -4,6 +4,22 @@ const { query, matchedData, validationResult } = require('express-validator');
 const app = express();
 const port = 3000;
 
+// Importer les modules nécessaires à MongoDB
+const {v4: uuidv4} = require('uuid');
+const {MongoClient} = require('mongodb');
+
+// Connexion à la base de données
+const uri = "mongodb://localhost:27017/eni-issue";
+const client = new MongoClient(uri, {useNewUrlParser: true});
+const db = client.db("eni-issue");
+client.connect()
+    .then(() => {
+        console.log('Connected succesfully to server');
+    })
+    .catch((err) => {
+        console.log('Error connecting to server: ', err);
+    });
+
 // Mise en place du moteur de rendu EJS
 app.set("views", "./views");
 app.set("view engine", "ejs");
@@ -15,49 +31,64 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Initialisation de la liste des issues
-let issues = [
-    {
-        id: 1,
-        titre: 'issue1',
-        description: 'description test',
-        auteur: 'Antoine',
-        date: '2025-01-29',
-        etat: 'resolu'
-    }
-];
+//let issues = [];
 
 // Routes
 // Route pour la page d'accueil
 app.get("/", (req, res) => {
-  res.render("index", { issues });
+  db.collection('issues').find().toArray().then((issues) => {
+    res.render("index", { issues });
+  });
 });
 
 // Route pour la page d'ajout d'une issue
 app.post("/add-issue", (req, res) => {
-    let id = issues.length + 1;
-    const { titre, description, auteur, date, etat } = req.body;
-    issues.push({ id, titre, description, auteur, date, etat });
+    db.collection('issues').insertOne({
+        uuid: uuidv4(),
+        titre: req.body.titre,
+        description: req.body.description,
+        auteur: req.body.auteur,
+        date: req.body.date,
+        etat: req.body.etat
+    });
+    
     res.redirect("/");
 });
 
 // Route pour la suppression d'une issue
-app.get("/delete-issue/:id", (req, res) => {
-    const { id } = req.params;
-    issues.splice(id - 1, 1);
-    res.redirect("/");
+app.get("/delete-issue/:uuid", (req, res) => {
+    db.collection('issues').deleteOne({uuid: req.params.uuid}).then((response) => {
+        if (response.deletedCount === 1) {
+            res.redirect("/");
+        } else {
+            res.status(404).send('Error: no issue found');
+        }
+    })
 });
 
 // Route pour la page d'édition d'une issue
-app.get("/edit-issue/:id", (req, res) => {
-    const { id } = req.params;
-    res.render("edit", { issue: issues[id - 1] });
+app.get("/edit-issue/:uuid", (req, res) => {
+    db.collection('issues').findOne({uuid: req.params.uuid}).then((issue) => {
+        if (issue) {
+            res.render("edit", { issue: issue });
+        } else {
+            res.status(404).send('Error: no issue found');
+        }
+    })
 });
 
 // Route pour l'édition d'une issue
-app.post("/edit-issue/:id", (req, res) => {
-    const { id } = req.params;
-    const { titre, description, auteur, date, etat } = req.body;
-    issues[id - 1] = { id, titre, description, auteur, date, etat };
+app.post("/edit-issue/:uuid", (req, res) => {
+    db.collection('issues').updateOne({uuid: req.params.uuid}, {
+        $set: {
+            titre: req.body.titre,
+            description: req.body.description,
+            auteur: req.body.auteur,
+            date: req.body.date,
+            etat: req.body.etat
+        }
+    })
+    
     res.redirect("/");
 });
 
@@ -76,3 +107,7 @@ app.use((err, req, res, next) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+//TODO: CRUD get 1 issue by ID
+//TODO: validation des données
+//TODO: ajouts de réponses aux tickets

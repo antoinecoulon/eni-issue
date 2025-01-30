@@ -8,7 +8,9 @@
 </head>
 <body class="bg-gray-100 min-h-screen">
     <header class="bg-gray-900 rounded-lg shadow-sm m-4 dark:bg-gray-800">
-        <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl dark:text-white text-center">ENIssues</h1>
+        <a href="/">
+            <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl dark:text-white text-center">ENIssues</h1>
+        </a>
     </header>
 
     <section class="bg-gray-300 rounded-lg shadow-sm m-4 text-center w-3/5 flex flex-col justify-center items-center mx-auto text-lg">
@@ -39,7 +41,7 @@
 
     <section class="bg-gray-300 rounded-lg shadow-sm m-4 text-center w-3/5 flex flex-col justify-center items-center mx-auto text-lg">
         <form action="/details/<%=issue.uuid%>/add-message" method="post">
-            <div class="flex justify-center items-center mt-4">            
+            <div class="flex flex-col justify-center items-center mt-4">            
                 <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white mr-4">Répondre à cette issue:</label>
                 <textarea id="message" name="message" rows="4" cols="120" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Répondre ici..."></textarea>
             </div>

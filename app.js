@@ -49,6 +49,21 @@ app.get("/details/:uuid", (req, res) => {
     })
 });
 
+// Route pour la création d'un message sur une issue
+app.post("/details/:uuid/add-message", (req, res) => {
+    let issueID = req.params.uuid;
+    db.collection('issues').updateOne({uuid: issueID}, {
+        $push: {
+            messages: {
+                nom: req.body.name,
+                message: req.body.message,
+                date: new Date()
+            }
+        }
+    });
+    res.redirect(`/details/${issueID}`)
+})
+
 // Route pour la page d'ajout d'une issue
 app.post("/add-issue", (req, res) => {
     db.collection('issues').insertOne({
@@ -116,6 +131,4 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-//TODO: CRUD get 1 issue by ID
 //TODO: validation des données
-//TODO: ajouts de réponses aux tickets

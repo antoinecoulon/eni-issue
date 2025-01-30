@@ -66,12 +66,15 @@ app.post("/details/:uuid/add-message", (req, res) => {
 
 // Route pour la page d'ajout d'une issue
 app.post("/add-issue", (req, res) => {
+    let date = new Date();
+    let dateFormatted = date.toLocaleDateString("fr-FR", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+    
     db.collection('issues').insertOne({
         uuid: uuidv4(),
         titre: req.body.titre,
         description: req.body.description,
         auteur: req.body.auteur,
-        date: new Date(),
+        date: dateFormatted,
         etat: 'en-cours'
     });
     

@@ -6,7 +6,7 @@
     <title>ENIssues</title>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 </head>
-<body class="bg-gray-100 min-h-screen w-screen min-w-screen">
+<body class="bg-[url(/pattern.svg)] min-h-screen w-screen min-w-screen">
     <header class="bg-gray-900 rounded-lg shadow-sm m-4 dark:bg-gray-800">
         <a href="/">
             <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl dark:text-white text-center">ENIssues</h1>
@@ -16,7 +16,7 @@
     <section class="text-gray-600 body-font overflow-hidden text-center max-w-full">
 
         <a href="/error">
-            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded border-blue-200">
                 GENERATE ERREUR
             </button>
         </a>
@@ -32,8 +32,8 @@
             ></dotlottie-player>
         </div>
     
-        <h2 class="text-2xl font-medium text-gray-900 title-font text-center -my-8">
-            Ajouter un nouveau ticket:
+        <h2 class="text-2xl font-medium text-gray-900 title-font text-center -my-8 bg-gray-100 p-1 border border-blue-300 w-4/6 block mx-auto">
+            Ajouter un nouveau ticket
         </h2>
         
         <div class="container px-5 py-6 mx-auto flex justify-center items-center">
@@ -41,18 +41,18 @@
                 
                 <div class="flex flex-row">
                     <div class="m-3">
-                        <label for="titre">Titre:</label>
-                        <input type="text" name="titre" id="titre" class="shadow-md border border-gray-300 m-2 p-1">
+                        <label for="titre" class="bg-gray-100 p-1 border border-blue-300">Titre:</label>
+                        <input type="text" name="titre" id="titre" class="bg-gray-100 shadow-md border border-blue-300 m-2 p-1">
                     </div>
 
                     <div class="m-3">
-                        <label for="auteur">Auteur:</label>
-                        <input type="text" name="auteur" id="auteur" class="shadow-md border border-gray-300 m-2 p-1">
+                        <label for="auteur" class="bg-gray-100 p-1 border border-blue-300">Auteur:</label>
+                        <input type="text" name="auteur" id="auteur" class="bg-gray-100 shadow-md border border-blue-300 m-2 p-1">
                     </div>
                 </div>
                     <div class="m-3 flex flex-col">
-                        <label for="description">Description:</label>
-                        <textarea name="description" id="description" class="shadow-md border border-gray-300 m-2 p-1"></textarea>
+                        <label for="description" class="bg-gray-100 p-1 border border-blue-300">Description:</label>
+                        <textarea name="description" id="description" class="bg-gray-100 shadow-md border border-blue-300 m-2 p-1"></textarea>
                     </div>
                 
 
@@ -74,7 +74,7 @@
                     
                     <% issues.forEach(issue => { %>
                         
-                            <div class="hover:bg-gray-200 w-full mb-2 shadow ring-1 flex flex-row justify-center items-center">
+                            <div class="hover:bg-blue-200 w-full mb-2 shadow ring-1 flex flex-row justify-center items-center">
                                 <div class="w-4/6 p-4">
                                     <a href="/details/<%=issue.uuid%>"><h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white hover:text-blue-700">
                                         <%= issue.titre %> 

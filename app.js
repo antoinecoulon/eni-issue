@@ -3,6 +3,8 @@ const { query, matchedData, validationResult } = require('express-validator');
 
 const app = express();
 const port = 3000;
+// fichiers statiques du dossier public
+app.use(express.static('public'));
 
 // Importer les modules nécessaires à MongoDB
 const {v4: uuidv4} = require('uuid');

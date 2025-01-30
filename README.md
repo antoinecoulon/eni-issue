@@ -10,3 +10,6 @@ _Eni-Issue est un projet de formation, l'objectif étant d'apprendre le langage 
 ## Version History
 - v0.1
     * Initial Release
+
+## TODO: 
+- Validation des données

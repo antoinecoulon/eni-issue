@@ -71,8 +71,8 @@ app.post("/add-issue", (req, res) => {
         titre: req.body.titre,
         description: req.body.description,
         auteur: req.body.auteur,
-        date: req.body.date,
-        etat: req.body.etat
+        date: new Date(),
+        etat: 'en-cours'
     });
     
     res.redirect("/");
@@ -96,7 +96,6 @@ app.post("/edit-issue/:uuid", (req, res) => {
             titre: req.body.titre,
             description: req.body.description,
             auteur: req.body.auteur,
-            date: req.body.date,
             etat: req.body.etat
         }
     })

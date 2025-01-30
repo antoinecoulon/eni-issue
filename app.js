@@ -115,6 +115,17 @@ app.get("/delete-issue/:uuid", (req, res) => {
     })
 });
 
+// Fermer une issue
+app.post("/details/:uuid/close-issue", (req, res) => {
+    let issueID = req.params.uuid;
+    db.collection('issues').updateOne({uuid: issueID}, {
+        $set: {
+            etat: 'resolu'
+            }
+        })
+    res.redirect(`/details/${issueID}`);
+});
+
 // Simulation d'une erreur
 app.get('/error', (req, res, next) => {
     next(new Error("Ceci est un test d'erreur"));

@@ -33,9 +33,20 @@ app.use(express.json());
 // Routes
 // Route pour la page d'accueil
 app.get("/", (req, res) => {
-  db.collection('issues').find().toArray().then((issues) => {
-    res.render("index", { issues });
-  });
+    db.collection('issues').find().toArray().then((issues) => {
+        res.render("index", { issues });
+    });
+});
+
+// Route pour obtenir le détail d'une issue
+app.get("/details/:uuid", (req, res) => {
+    db.collection('issues').findOne({uuid: req.params.uuid}).then((issue) => {
+        if (issue) {
+            res.render("details", { issue: issue });
+        } else {
+            res.status(404).send('Error: no issue found');
+        }
+    })
 });
 
 // Route pour la page d'ajout d'une issue

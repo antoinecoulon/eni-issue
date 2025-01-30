@@ -13,3 +13,5 @@ _Eni-Issue est un projet de formation, l'objectif étant d'apprendre le langage 
 
 ## TODO: 
 - Validation des données
+- Router
+- Mangoose integration

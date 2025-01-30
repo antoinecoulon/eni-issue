@@ -7,9 +7,10 @@
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 </head>
 <body class="bg-[url(/pattern.svg)] min-h-screen w-screen min-w-screen">
-    <header class="bg-gray-900 rounded-lg shadow-sm m-4 dark:bg-gray-800">
+    
+    <header class="bg-blue-900 rounded-lg shadow-sm m-4">
         <a href="/">
-            <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl dark:text-white text-center">ENIssues</h1>
+            <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-red-100 md:text-5xl lg:text-6xl text-center">ENIssues</h1>
         </a>
     </header>
 
@@ -32,7 +33,7 @@
             ></dotlottie-player>
         </div>
     
-        <h2 class="text-2xl font-medium text-gray-900 title-font text-center -my-8 bg-gray-100 p-1 border border-blue-300 w-4/6 block mx-auto">
+        <h2 class="text-2xl font-medium text-gray-900 title-font text-center -my-8 bg-red-50 p-1 border border-blue-300 w-4/6 block mx-auto">
             Ajouter un nouveau ticket
         </h2>
         
@@ -41,45 +42,47 @@
                 
                 <div class="flex flex-row">
                     <div class="m-3">
-                        <label for="titre" class="bg-gray-100 p-1 border border-blue-300">Titre:</label>
-                        <input type="text" name="titre" id="titre" class="bg-gray-100 shadow-md border border-blue-300 m-2 p-1">
+                        <label for="titre" class="bg-red-50 p-1 border border-blue-300">Titre:</label>
+                        <input type="text" name="titre" id="titre" class="bg-red-50 shadow-md border border-blue-300 m-2 p-1">
                     </div>
 
                     <div class="m-3">
-                        <label for="auteur" class="bg-gray-100 p-1 border border-blue-300">Auteur:</label>
-                        <input type="text" name="auteur" id="auteur" class="bg-gray-100 shadow-md border border-blue-300 m-2 p-1">
+                        <label for="auteur" class="bg-red-50 p-1 border border-blue-300">Auteur:</label>
+                        <input type="text" name="auteur" id="auteur" class="bg-red-50 shadow-md border border-blue-300 m-2 p-1">
                     </div>
                 </div>
                     <div class="m-3 flex flex-col">
-                        <label for="description" class="bg-gray-100 p-1 border border-blue-300">Description:</label>
-                        <textarea name="description" id="description" class="bg-gray-100 shadow-md border border-blue-300 m-2 p-1"></textarea>
+                        <label for="description" class="bg-red-50 p-1 border border-blue-300">Description:</label>
+                        <textarea name="description" id="description" class="bg-red-50 shadow-md border border-blue-300 m-2 p-1"></textarea>
                     </div>
                 
 
                 <div class="m-3">
-                    <button type="submit" class="m-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Envoyer</button>
+                    <button type="submit" class="m-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">
+                        Envoyer
+                    </button>
                 </div>
             </form>
         </div>
     </section>
 
-    <section class="text-gray-600 body-font overflow-hidden  text-center">
-        <h2 class="text-2xl font-medium text-gray-900 title-font mb-2 text-center">
+    <section class="text-gray-600 body-font overflow-hidden text-center">
+        <h2 class="text-2xl font-medium text-gray-900 title-font text-center bg-red-50 p-1 border border-blue-300 w-4/6 block mx-auto">
             Liste des tickets:
         </h2>
         
         <% if (issues.length > 0) { %> 
-            <div class="container p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 px-5 py-24 mx-auto flex justify-center items-center">
-                <div class="-my-8 divide-y-2 divide-gray-100 flex flex-col justify-center items-center">
+            <div class="container p-6 bg-transparent border border-gray-200 rounded-lg shadow-sm px-5 mx-auto flex justify-center items-center">
+                <div class="-my-4 divide-y-2 divide-red-100 flex flex-col justify-center items-center">
                     
                     <% issues.forEach(issue => { %>
                         
-                            <div class="hover:bg-blue-200 w-full mb-2 shadow ring-1 flex flex-row justify-center items-center">
+                            <div class="bg-red-50 hover:bg-blue-200 w-full mb-2 shadow ring-1 flex flex-row justify-center items-center">
                                 <div class="w-4/6 p-4">
-                                    <a href="/details/<%=issue.uuid%>"><h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white hover:text-blue-700">
+                                    <a href="/details/<%=issue.uuid%>"><h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 hover:text-blue-700">
                                         <%= issue.titre %> 
                                     </h5></a>
-                                    <p class="font-normal text-gray-700 dark:text-gray-400 text-justify">
+                                    <p class="font-normal text-gray-700 text-justify">
                                         <%= issue.description %>
                                     </p>
                                 </div>

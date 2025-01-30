@@ -6,15 +6,15 @@
     <title>ENIssues</title>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 </head>
-<body class="bg-gray-100 min-h-screen">
+<body class="bg-[url(/pattern.svg)] min-h-screen w-screen min-w-screen">
     
-    <header class="bg-gray-900 rounded-lg shadow-sm m-4 dark:bg-gray-800">
+    <header class="bg-blue-900 rounded-lg shadow-sm m-4">
         <a href="/">
-            <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl dark:text-white text-center">ENIssues</h1>
+            <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-red-100 md:text-5xl lg:text-6xl text-center">ENIssues</h1>
         </a>
     </header>
 
-    <section class="bg-gray-300 rounded-lg shadow-sm m-4 text-center w-3/5 flex flex-col justify-center items-center mx-auto text-lg">
+    <section class="bg-red-50 rounded-lg shadow-sm m-4 text-center w-3/5 flex flex-col justify-center items-center mx-auto text-lg">
         <div class="font-bold">
             <%= issue.titre %>
         </div>

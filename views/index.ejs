@@ -6,7 +6,7 @@
     <title>ENIssues</title>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 </head>
-<body class="bg-gray-100 min-h-screen w-screen max-w-screen">
+<body class="bg-gray-100 min-h-screen w-screen min-w-screen">
     <header class="bg-gray-900 rounded-lg shadow-sm m-4 dark:bg-gray-800">
         <a href="/">
             <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl dark:text-white text-center">ENIssues</h1>
@@ -32,8 +32,8 @@
             ></dotlottie-player>
         </div>
     
-        <h2 class="text-2xl font-medium text-gray-900 title-font mb-2 text-center">
-            Ajouter une nouvelle issue:
+        <h2 class="text-2xl font-medium text-gray-900 title-font text-center -my-8">
+            Ajouter un nouveau ticket:
         </h2>
         
         <div class="container px-5 py-6 mx-auto flex justify-center items-center">
@@ -65,40 +65,47 @@
 
     <section class="text-gray-600 body-font overflow-hidden  text-center">
         <h2 class="text-2xl font-medium text-gray-900 title-font mb-2 text-center">
-            Liste des issues:
+            Liste des tickets:
         </h2>
         
         <% if (issues.length > 0) { %> 
             <div class="container p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 px-5 py-24 mx-auto flex justify-center items-center">
-                <div class="-my-8 divide-y-2 divide-gray-100">
+                <div class="-my-8 divide-y-2 divide-gray-100 flex flex-col justify-center items-center">
                     
                     <% issues.forEach(issue => { %>
-                        <a href="/details/<%=issue.uuid%>" class="block p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                <%= issue.titre %> 
-                            </h5>
-                            <p class="font-normal text-gray-700 dark:text-gray-400">
-                                <%= issue.description %>
-                            </p>
-                            <span class="font-semibold title-font text-gray-700">
-                                <%= issue.auteur %>
-                            </span>
-                            <span class="mt-1 text-gray-500 text-sm">
-                                <%= issue.date %>
-                            </span>
-                            <% if (issue.etat == 'resolu') { %>
-                                <p class="text-green-500 inline-flex items-center mt-4 line-through">
-                                    Résolu!
-                                </p>
-                            <% } else { %>
-                                <p class="text-red-500 inline-flex items-center mt-4 underline">
-                                    En cours!
-                                </p>   
-                            <% } %>
-                            <a href="/edit-issue/<%=issue.uuid%>">Modifier</a>
-                            <a href="/delete-issue/<%=issue.uuid%>">Supprimer</a>
-                        </a>
+                        
+                            <div class="hover:bg-gray-200 w-full mb-2 shadow ring-1 flex flex-row justify-center items-center">
+                                <div class="w-4/6 p-4">
+                                    <a href="/details/<%=issue.uuid%>"><h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white hover:text-blue-700">
+                                        <%= issue.titre %> 
+                                    </h5></a>
+                                    <p class="font-normal text-gray-700 dark:text-gray-400 text-justify">
+                                        <%= issue.description %>
+                                    </p>
+                                </div>
+                                <div class="w-1/6">
+                                    <span class="block font-semibold title-font text-gray-700">
+                                        <%= issue.auteur %>
+                                    </span>
+                                    <span class="block mt-1 text-gray-500 text-sm">
+                                        <%= issue.date %>
+                                    </span>
+                                    <% if (issue.etat == 'resolu') { %>
+                                        <p class="block text-green-500 inline-flex items-center mt-4 line-through">
+                                            Résolu!
+                                        </p>
+                                    <% } else { %>
+                                        <p class="block text-red-500 inline-flex items-center mt-4 underline">
+                                            En cours!
+                                        </p>   
+                                    <% } %>
+                                </div>
+                                <div class="w-1/6">
+                                    <a href="/edit-issue/<%=issue.uuid%>" class="block">Modifier</a>
+                                    <a href="/delete-issue/<%=issue.uuid%>" class="block text-red-500">Supprimer</a>
+                                </div>
+                            </div>
+                        
                     <% }); %>
                 
                 </div> 
